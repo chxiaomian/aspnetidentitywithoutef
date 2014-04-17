@@ -9,21 +9,49 @@ namespace AspNet.Identity.NoEF
 {
     public class IdentityRole: IRole
     {
-        public string Id
+        /// <summary>
+        /// Default constructor for Role 
+        /// </summary>
+        public IdentityRole()
         {
-            get { throw new NotImplementedException(); }
+            Id = Guid.NewGuid().ToString();
+        }
+        /// <summary>
+        /// Constructor that takes names as argument 
+        /// </summary>
+        /// <param name="name"></param>
+        public IdentityRole(String roleName)
+            : this()
+        {
+            Name = roleName;
         }
 
-        public string Name
+        public IdentityRole(String roleName, String description)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            Name = roleName;
+            Description = description;
         }
+
+        public IdentityRole(String roleId, String roleName, String description)
+        {
+            Id = roleId;
+            Name = roleName;
+            Description = description;            
+        }
+
+        /// <summary>
+        /// Role ID
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Role name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Role Description
+        /// </summary>
+        public string Description { get; set; }
     }
 }

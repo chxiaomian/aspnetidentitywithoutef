@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BaseHandler.cs" />
     <Compile Include="Data\RoleHandler.cs" />
     <Compile Include="Data\UserClaimHandler.cs" />
     <Compile Include="Data\UserHandler.cs" />

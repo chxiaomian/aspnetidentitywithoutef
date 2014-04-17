@@ -9,21 +9,42 @@ namespace AspNet.Identity.NoEF
 {
     public class IdentityUser: IUser
     {
-        public string Id
+        /// <summary>
+        /// Default constructor 
+        /// </summary>
+        public IdentityUser()
         {
-            get { throw new NotImplementedException(); }
+            Id = Guid.NewGuid().ToString();
         }
 
-        public string UserName
+        /// <summary>
+        /// Constructor that takes user name as argument
+        /// </summary>
+        /// <param name="userName"></param>
+        public IdentityUser(string userName)
+            : this()
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            UserName = userName;
         }
+
+        /// <summary>
+        /// User ID
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// User's name
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// User's password hash
+        /// </summary>
+        public string PasswordHash { get; set; }
+
+        /// <summary>
+        /// User's security stamp
+        /// </summary>
+        public string SecurityStamp { get; set; }
     }
 }
