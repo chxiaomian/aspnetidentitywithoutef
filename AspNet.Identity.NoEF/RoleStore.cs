@@ -4,39 +4,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AspNet.Identity.NoEF.Data;
 
 namespace AspNet.Identity.NoEF
 {
     public class RoleStore: IRoleStore<IdentityRole>
     {
+
+        private RoleHandler handler = new RoleHandler();
+
         public Task CreateAsync(IdentityRole role)
         {
-            throw new NotImplementedException();
+            if (role == null) 
+            {
+                throw new ArgumentNullException("Role is empty.");
+            }
+
+            handler.AddRole(role);
+
+            return Task.FromResult<object>(null);
         }
 
         public Task DeleteAsync(IdentityRole role)
         {
-            throw new NotImplementedException();
+            if (role == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            handler.RemoveRole(role.Id);
+
+            return Task.FromResult<Object>(null);
         }
 
-        public Task<IdentityRole> FindByIdAsync(string roleId)
+        public Task<IdentityRole> FindByIdAsync(String roleId)
         {
-            throw new NotImplementedException();
+            IdentityRole result = handler.GetRoleById(roleId);
+
+            return Task.FromResult<IdentityRole>(result);
         }
 
-        public Task<IdentityRole> FindByNameAsync(string roleName)
+        public Task<IdentityRole> FindByNameAsync(String roleName)
         {
-            throw new NotImplementedException();
+            IdentityRole result = handler.GetRoleByName(roleName);
+
+            return Task.FromResult<IdentityRole>(result);
         }
 
         public Task UpdateAsync(IdentityRole role)
         {
-            throw new NotImplementedException();
+            if (role == null)
+            {
+                throw new ArgumentNullException("Role is empty.");
+            }
+
+            handler.SaveRole(role);
+
+            return Task.FromResult<Object>(null);
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

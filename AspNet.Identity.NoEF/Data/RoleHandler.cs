@@ -62,6 +62,16 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        public Int32 RemoveRole(String roleId)
+        {
+            using (DbCommand cmd = db.GetStoredProcCommand("AI_DeleteRole"))
+            {
+                db.AddInParameter(cmd, "RoleId", DbType.String, roleId);
+
+                return db.ExecuteNonQuery(cmd);
+            }
+        }
+
         public IdentityRole SaveRole(IdentityRole newRole)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_SaveRole"))

@@ -63,6 +63,16 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        public Int32 RemoveUser(IdentityUser newUser)
+        {
+            using (DbCommand cmd = db.GetStoredProcCommand("AI_DeleteUser"))
+            {
+                db.AddInParameter(cmd, "UserId", DbType.String, newUser.Id);
+
+                return db.ExecuteNonQuery(cmd);
+            }
+        }
+
         public IdentityUser SaveUser(IdentityUser newUser)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_SaveUser"))
@@ -76,6 +86,24 @@ namespace AspNet.Identity.NoEF.Data
 
                 return GetUserById(newUser.Id);
             }
+        }
+
+        public String GetPasswordHash(String userId)
+        {
+            IdentityUser user = GetUserById(userId);
+
+            return user.PasswordHash;
+        }
+
+        public String SetPasswordHash(String userId, String passwordHash)
+        {
+            IdentityUser user = GetUserById(userId);
+
+            user.PasswordHash = passwordHash;
+
+            SaveUser(user);
+
+            return user.PasswordHash;
         }
     }
 }
