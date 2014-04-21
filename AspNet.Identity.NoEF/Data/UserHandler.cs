@@ -94,16 +94,5 @@ namespace AspNet.Identity.NoEF.Data
 
             return user.PasswordHash;
         }
-
-        public String SetPasswordHash(String userId, String passwordHash)
-        {
-            IdentityUser user = GetUserById(userId);
-
-            user.PasswordHash = passwordHash;
-
-            SaveUser(user);
-
-            return user.PasswordHash;
-        }
     }
 }

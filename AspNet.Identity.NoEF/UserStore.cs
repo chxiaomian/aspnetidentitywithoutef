@@ -304,7 +304,7 @@ namespace AspNet.Identity.NoEF
 
         public Task SetPasswordHashAsync(IdentityUser user, String passwordHash)
         {
-            UserHandler.SetPasswordHash(user.Id, passwordHash);
+            user.PasswordHash = passwordHash;
 
             return Task.FromResult<Object>(null);
         }

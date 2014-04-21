@@ -34,7 +34,6 @@ namespace AspNet.Identity.NoEF.Data
             return logins;
         }
 
-
         public String GetUserIdByLogin(UserLoginInfo login)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_GetUserIdByLogin"))
@@ -89,7 +88,6 @@ namespace AspNet.Identity.NoEF.Data
                 return db.ExecuteNonQuery(cmd);
             }
         }
-
 
     }
 }
