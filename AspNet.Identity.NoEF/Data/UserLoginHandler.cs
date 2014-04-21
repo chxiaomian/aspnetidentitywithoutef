@@ -9,9 +9,16 @@ using Microsoft.AspNet.Identity;
 
 namespace AspNet.Identity.NoEF.Data
 {
+    /// <summary>
+    /// Handler for 'AspNetIdentity_UserLogin' table.
+    /// </summary>
     internal class UserLoginHandler : BaseHandler
     {
-
+        /// <summary>
+        /// Returns the list of User logins by user ID.
+        /// </summary>
+        /// <param name="userId">User ID</param>
+        /// <returns>List of user login information.</returns>
         public List<UserLoginInfo> GetLoginByUserId(String userId) 
         {
             List<UserLoginInfo> logins = new List<UserLoginInfo>();
@@ -34,6 +41,11 @@ namespace AspNet.Identity.NoEF.Data
             return logins;
         }
 
+        /// <summary>
+        /// Returns the user ID by user login.
+        /// </summary>
+        /// <param name="login">User's login detail.</param>
+        /// <returns>User ID</returns>
         public String GetUserIdByLogin(UserLoginInfo login)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_GetUserIdByLogin"))
@@ -53,6 +65,12 @@ namespace AspNet.Identity.NoEF.Data
             return String.Empty;
         }
 
+        /// <summary>
+        /// Adds a record to 'AspNetIdentity_UserLogin' table.
+        /// </summary>
+        /// <param name="login">UserLoginInfo to add.</param>
+        /// <param name="userId">User ID</param>
+        /// <returns>No of records inserted.</returns>
         public Int32 AddLogin(UserLoginInfo login, String userId)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_AddUserLogin"))
@@ -66,6 +84,12 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        /// <summary>
+        /// Deletes a record from 'AspNetIdentity_UserLogin' table.
+        /// </summary>
+        /// <param name="login">UserLoginInfo to delete.</param>
+        /// <param name="userId">User ID</param>
+        /// <returns>No of records deleted.</returns>
         public Int32 RemoveLogin(UserLoginInfo login, String userId)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_DeleteUserLogin"))
@@ -79,6 +103,11 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        /// <summary>
+        /// Deletes all records from 'AspNetIdentity_UserLogin' table by User ID.
+        /// </summary>
+        /// <param name="userId">User ID</param>
+        /// <returns>No of records deleted.</returns>
         public Int32 RemoveAllLogins(String userId)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_DeleteUserLoginAllByUserId"))

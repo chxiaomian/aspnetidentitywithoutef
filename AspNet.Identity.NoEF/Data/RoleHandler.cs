@@ -9,9 +9,16 @@ using System.Data;
 
 namespace AspNet.Identity.NoEF.Data
 {
+    /// <summary>
+    /// Handler for 'AspNetIdentity_Role' table.
+    /// </summary>
     internal class RoleHandler: BaseHandler
     {
-
+        /// <summary>
+        /// Returns the Identity Role object.
+        /// </summary>
+        /// <param name="reader">IDataReader object with Identity role data.</param>
+        /// <returns>Returns IdentityRole.</returns>
         private IdentityRole GetRole(IDataReader reader)
         {
             IdentityRole newRole = null;
@@ -28,6 +35,11 @@ namespace AspNet.Identity.NoEF.Data
             return newRole;
         }
 
+        /// <summary>
+        /// Returns the Role by role Id.
+        /// </summary>
+        /// <param name="roleId">Role Id</param>
+        /// <returns>Returns Role.</returns>
         public IdentityRole GetRoleById(String roleId) 
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_GetRole"))
@@ -38,6 +50,11 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        /// <summary>
+        /// Returns the Role by role name.
+        /// </summary>
+        /// <param name="roleName">Name of the Role.</param>
+        /// <returns>Returns Role.</returns>
         public IdentityRole GetRoleByName(String roleName)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_GetRole"))
@@ -48,6 +65,11 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        /// <summary>
+        /// Adds new record to IdentityRole table.
+        /// </summary>
+        /// <param name="newRole">Role to add.</param>
+        /// <returns>Returns Role.</returns>
         public IdentityRole AddRole(IdentityRole newRole)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_AddRole"))
@@ -62,6 +84,11 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        /// <summary>
+        /// Deletes a record from IdentityRole table.
+        /// </summary>
+        /// <param name="roleId">ID of the role to delete.</param>
+        /// <returns>No of rows deleted.</returns>
         public Int32 RemoveRole(String roleId)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_DeleteRole"))
@@ -72,6 +99,11 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        /// <summary>
+        /// Updates the IdentityRole record.
+        /// </summary>
+        /// <param name="newRole">Role object with updated values.</param>
+        /// <returns>Returns Role.</returns>
         public IdentityRole SaveRole(IdentityRole newRole)
         {
             using (DbCommand cmd = db.GetStoredProcCommand("AI_SaveRole"))

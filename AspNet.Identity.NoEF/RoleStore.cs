@@ -8,6 +8,9 @@ using AspNet.Identity.NoEF.Data;
 
 namespace AspNet.Identity.NoEF
 {
+    /// <summary>
+    /// Class that implements the key ASP.NET Identity role store iterfaces.
+    /// </summary>
     public class RoleStore: IRoleStore<IdentityRole>
     {
 

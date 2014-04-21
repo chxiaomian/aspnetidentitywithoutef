@@ -9,6 +9,9 @@ using System.Security.Claims;
 
 namespace AspNet.Identity.NoEF
 {
+    /// <summary>
+    /// Class that implements the key ASP.NET Identity user store iterfaces.
+    /// </summary>
     public class UserStore: IUserStore<IdentityUser>,
                             IUserClaimStore<IdentityUser>,
                             IUserLoginStore<IdentityUser>,

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace AspNet.Identity.NoEF
 {
+    /// <summary>
+    /// Class that implements IRole Interface.
+    /// </summary>
     public class IdentityRole: IRole
     {
         /// <summary>

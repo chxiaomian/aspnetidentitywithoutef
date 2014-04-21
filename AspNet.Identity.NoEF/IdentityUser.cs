@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace AspNet.Identity.NoEF
 {
+    /// <summary>
+    /// Class that implements IUser Interface.
+    /// </summary>
     public class IdentityUser: IUser
     {
         /// <summary>

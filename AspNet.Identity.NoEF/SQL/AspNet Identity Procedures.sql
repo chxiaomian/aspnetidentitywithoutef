@@ -45,6 +45,14 @@ AS
 	WHERE	[UserId] = @UserId
 GO
 
+
+CREATE PROCEDURE [dbo].[AI_DeleteUser] (	
+	 @UserId VARCHAR(36)
+)
+AS	
+	DELETE FROM	[dbo].[AspNetIdentity_User] WHERE [UserId] = @UserId
+GO
+
 --ROLE
 
 CREATE PROCEDURE [dbo].[AI_GetRole] (	
@@ -78,6 +86,14 @@ AS
 		VALUES	(@RoleId, @RoleName, @Description) 
 	END
 GO
+
+CREATE PROCEDURE [dbo].[AI_DeleteRole] (	
+	 @RoleId VARCHAR(36)
+)
+AS
+	DELETE FROM [dbo].[AspNetIdentity_Role] WHERE [RoleId] = @RoleId
+GO
+
 
 CREATE PROCEDURE [dbo].[AI_SaveRole] (	
 	 @RoleId VARCHAR(36)
@@ -139,6 +155,16 @@ AS
 		SELECT	[UserId], [ProviderKey], [LoginProvider]
 		FROM	[dbo].[AspNetIdentity_UserLogin]
 		WHERE	[UserId] = @UserId
+GO
+
+CREATE PROCEDURE [dbo].[AI_GetUserIdByLogin] (	
+	 @ProviderKey VARCHAR(100)
+	 ,@LoginProvider VARCHAR(100)
+)
+AS
+		SELECT	[UserId], [ProviderKey], [LoginProvider]
+		FROM	[dbo].[AspNetIdentity_UserLogin]
+		WHERE	[ProviderKey] = @ProviderKey AND [LoginProvider] = @LoginProvider
 GO
 
 CREATE PROCEDURE [dbo].[AI_AddUserLogin] (	

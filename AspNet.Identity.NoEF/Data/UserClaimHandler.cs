@@ -9,8 +9,16 @@ using System.Threading.Tasks;
 
 namespace AspNet.Identity.NoEF.Data
 {
+    /// <summary>
+    /// Handler for 'AspNetIdentity_UserClaim' table.
+    /// </summary>
     internal class UserClaimHandler : BaseHandler
     {
+        /// <summary>
+        /// Returns a ClaimsIdentity based on the user ID.
+        /// </summary>
+        /// <param name="userId">UserId to look for.</param>
+        /// <returns>Returns ClaimsIdentity.</returns>
         public ClaimsIdentity GetClaimsByUserId(String userId) 
         {
             ClaimsIdentity claims = new ClaimsIdentity();
@@ -33,6 +41,12 @@ namespace AspNet.Identity.NoEF.Data
             return claims;
         }
 
+        /// <summary>
+        /// Adds a record to AspNetIdentity_UserClaim table.
+        /// </summary>
+        /// <param name="claim">Claim to add</param>
+        /// <param name="userId">User ID</param>
+        /// <returns>Returns the no of claims added.</returns>
         public Int32 AddClaim(Claim claim, String userId) {
 
             using (DbCommand cmd = db.GetStoredProcCommand("AI_AddUserClaim"))
@@ -46,6 +60,12 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        /// <summary>
+        /// Deletes a record from AspNetIdentity_UserClaim table.
+        /// </summary>
+        /// <param name="claim">Claim to delete</param>
+        /// <param name="userId">User ID</param>
+        /// <returns>Returns the no of claims deleted.</returns>
         public Int32 RemoveClaim(Claim claim, String userId) {
 
             using (DbCommand cmd = db.GetStoredProcCommand("AI_DeleteUserClaim"))
@@ -59,6 +79,11 @@ namespace AspNet.Identity.NoEF.Data
             }
         }
 
+        /// <summary>
+        /// Deletes all records from AspNetIdentity_UserClaim table by user ID.
+        /// </summary>
+        /// <param name="userId">User ID</param>
+        /// <returns>Returns the no of records deleted.</returns>
         public Int32 RemoveAllClaims(String userId)
         {
 
